@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Cadastro Lote</title>
+    <link href="../css/style.css" type="text/css" rel="stylesheet" />
+</h:head>
+
+<h:body>
+    <h:form id="planoLote">
+        <p:growl id="msg" />
+        <div align="center">
+            <p:panelGrid styleClass="semBorda" columns="2">
+            	
+                <p:outputLabel value="Numero do Lote" for="numLote" />
+                <p:inputText id="numLote" value="#{loteController.lote.numLote}" 
+                			 required="true" requiredMessage="Informe o numero do lote!" />
+                
+                <p:outputLabel value="Data de Fabricação" for="dataFab" />
+                <p:calendar id="dataFab" value="#{loteController.lote.dataFab}"
+                 			required="true" requiredMessage="Informe a data de Fabricação" />
+                 			
+                  <p:outputLabel value="Data de Vencimento" for="dataVen" />
+                <p:calendar id="dataVen" value="#{loteController.lote.dataVen}"
+                 			required="true" requiredMessage="Informe a data de Vencimento" />
+                
+                <p:selectOneMenu value="#{loteController.lote.fornecedores.id}">
+                	<f:selectItems value="#{loteController.carregarComboFornecedores()}" var="fornecedor" 
+                					itemLabel="#{fornecedor.razaoSocial}" itemValue="#{fornecedor.id}"/>
+                </p:selectOneMenu>
+                
+                 <p:selectOneMenu value="#{loteController.lote.produtos.id}">
+                	<f:selectItems value="#{loteController.carregarComboProdutos()}" var="produtos" 
+                					itemLabel="#{produtos.descricao}" itemValue="#{produtos.id}"/>
+                </p:selectOneMenu>
+                
+                
+                <p:commandButton value="Cadastrar"
+                    action="#{loteController.cadastrarLote}" update="msg" />
+            </p:panelGrid>
+        </div>
+    </h:form>
+</h:body>
+</html>

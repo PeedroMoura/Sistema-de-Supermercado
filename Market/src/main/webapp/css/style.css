@@ -1,0 +1,4 @@
+.semBorda tr, semBorda row, .semBorda td {
+    border: none !important;
+    background: transparent !important;
+}
