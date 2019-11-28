@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Principal</title>
+    <link href="../css/style.css" type="text/css" rel="stylesheet" />
+</h:head>
+<h:body>
+    <h:form>
+    
+         <div align="left">
+            <p:panelGrid styleClass="semBorda" columns="3">
+                <p:commandButton value="Cadastrar"
+                    action="#{loteController.redirecionarPagina('pages/cadastroLote')}" />
+            </p:panelGrid>
+        </div>
+        <p:dataTable value="#{loteController.listarLote()}" var="lote">
+        	<p:column headerText="Id">
+        		<p:outputLabel value="#{lote.id}"/>
+        	</p:column>
+        	
+        	<p:column headerText="Produto">
+        		<p:outputLabel value="#{lote.produtos.descricao}"/>
+        	</p:column>
+        	
+        	<p:column headerText="Fornecedor - razão social">
+        		<p:outputLabel value="#{lote.fornecedores.razaoSocial}"/>
+        	</p:column>
+        	
+        	<p:column headerText="Data Fabricação">
+        		<p:outputLabel value="#{lote.dataFab}"/>
+        	</p:column>
+        	
+        	<p:column headerText="Data Vencimento">
+        		<p:outputLabel value="#{lote.dataVen}"/>
+        	</p:column>
+        	
+        	<p:column headerText="Ações">
+        		<p:commandButton value="Deletar"
+                    action="#{loteController.deletar(lote)}" >
+                </p:commandButton>
+                <p:commandButton value="Editar"
+                    action="#{loteController}" >
+                </p:commandButton>
+        	</p:column>
+
+        </p:dataTable>
+    </h:form>
+
+</h:body>
+</html>

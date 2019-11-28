@@ -1,6 +1,8 @@
 package br.edu.cesmac.market.model;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Lote {
 	
@@ -52,6 +54,32 @@ public class Lote {
 	}
 	public void setNumLote(Integer numLote) {
 		this.numLote = numLote;
+	}
+	
+	public Date getDataVenFormatada() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+		Date date = null;
+
+		try {
+			date = formatter.parse(formatter.format(this.dataVen));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return date;
+	}
+
+	public Date getDataFabFormatada() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+		Date date = null;
+
+		try {
+			date = formatter.parse(formatter.format(this.dataFab));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return date;
 	}
 	
 }
