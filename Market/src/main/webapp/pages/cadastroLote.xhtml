@@ -38,9 +38,12 @@
                 					itemLabel="#{produtos.descricao}" itemValue="#{produtos.id}"/>
                 </p:selectOneMenu>
                 
+                 <p:commandButton value="Listagem"
+                  	action="#{loteController.redirecionarPagina('pages/listagem')}"/>
                 
                 <p:commandButton value="Cadastrar"
                     action="#{loteController.cadastrarLote}" update="msg" />
+                    
             </p:panelGrid>
         </div>
     </h:form>
