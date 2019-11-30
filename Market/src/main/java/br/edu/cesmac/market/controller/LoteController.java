@@ -33,10 +33,21 @@ public class LoteController {
 		
 		 if (loteDao.cadastrarLote(lote)) {
 		 FacesContext.getCurrentInstance().addMessage(null, new
-		 FacesMessage(FacesMessage.SEVERITY_INFO, "Lote Cadastrado Com Sucesso!",
+		 FacesMessage(FacesMessage.SEVERITY_INFO, "Lote cadastrado com sucesso!",
 		 "sucesso")); } else { FacesContext.getCurrentInstance().addMessage(null, new
 		 FacesMessage(FacesMessage.SEVERITY_WARN,
-		 "Ocorreu um erro no Cadastro do Lote!", "sucesso")); }
+		 "Ocorreu um erro no cadastro do lote!", "sucesso")); }
+		 
+	}
+	
+	public void editarLote() {
+		
+		 if (loteDao.editarLote(lote)) {
+		 FacesContext.getCurrentInstance().addMessage(null, new
+		 FacesMessage(FacesMessage.SEVERITY_INFO, "Lote editado com sucesso!",
+		 "sucesso")); } else { FacesContext.getCurrentInstance().addMessage(null, new
+		 FacesMessage(FacesMessage.SEVERITY_WARN,
+		 "Ocorreu um erro ao editar o lote!", "sucesso")); }
 		 
 	}
 	
@@ -64,8 +75,7 @@ public class LoteController {
 		}
 		return delete;
 	}
-	
-	
+
 	public List<Lote> listarLote(){
 		return loteDao.listarLote();
 	}
@@ -79,6 +89,11 @@ public class LoteController {
 	}
 
 	public void redirecionarPagina(String page) throws IOException {
+		String url = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
+		FacesContext.getCurrentInstance().getExternalContext().redirect(url + "/" + page +".faces");
+	}
+	
+	public void redirecionarParaPaginaDeEditar(String page) throws IOException {
 		String url = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
 		FacesContext.getCurrentInstance().getExternalContext().redirect(url + "/" + page +".faces");
 	}

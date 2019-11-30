@@ -43,9 +43,10 @@
         		<p:commandButton value="Deletar"
                     action="#{loteController.deletar(lote)}" >
                 </p:commandButton>
+                
                 <p:commandButton value="Editar"
-                    action="#{loteController}" >
-                </p:commandButton>
+                    action="#{loteController.redirecionarPagina('pages/editar')}" />
+           
         	</p:column>
 
         </p:dataTable>

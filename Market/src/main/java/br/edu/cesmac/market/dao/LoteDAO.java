@@ -45,6 +45,36 @@ public class LoteDAO {
 		return cadastrou;
 	}
 	
+	public Boolean editarLote(Lote lote) {
+		Boolean editado = false;
+		this.sql = "UPDATE lote set numero_lote = ?, data_fabricacao = ?, data_vencimento = ?, id_produtos = ?, id_fornecedor = ? WHERE id = ?";
+		try {
+			
+			this.con = ConnectionFactory.getConnection();
+			PreparedStatement preparedStatement = this.con.prepareStatement(this.sql);
+			preparedStatement.setInt(1, lote.getNumLote());
+			preparedStatement.setDate(2, new java.sql.Date(lote.getDataFabFormatada().getTime()));
+			preparedStatement.setDate(3, new java.sql.Date(lote.getDataVenFormatada().getTime()));
+			preparedStatement.setLong(4, lote.getProdutos().getId());
+			preparedStatement.setLong(5, lote.getFornecedores().getId());
+			preparedStatement.setLong(6, lote.getId());
+			
+			preparedStatement.execute();
+			editado = true;
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally {
+			try {
+				this.con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return editado;
+	}
+	
+	
 	public List<Fornecedores> listarFornecedores(){
 		List<Fornecedores> lista = new ArrayList<>();
 
